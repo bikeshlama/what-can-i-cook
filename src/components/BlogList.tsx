@@ -25,7 +25,7 @@ const blogPosts: BlogPost[] = [
   {
     id: '2',
     title: '10 Essential Ingredients Every Home Cook Should Have',
-    excerpt: 'Stock your kitchen with these versatile ingredients and you'll always be prepared to whip up a quick and tasty meal, even when you haven't gone grocery shopping.',
+    excerpt: "Stock your kitchen with these versatile ingredients and you'll always be prepared to whip up a quick and tasty meal, even when you haven't gone grocery shopping.",
     imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
     date: 'March 28, 2023',
     category: 'Pantry Basics',
@@ -33,8 +33,8 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: '3',
-    title: 'Budget-Friendly Meals That Don't Sacrifice Flavor',
-    excerpt: 'Eating well doesn't have to break the bank. These affordable recipes prove that delicious, nutritious meals can be made on any budget.',
+    title: 'Budget-Friendly Meals That Don\'t Sacrifice Flavor',
+    excerpt: "Eating well doesn't have to break the bank. These affordable recipes prove that delicious, nutritious meals can be made on any budget.",
     imageUrl: 'https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
     date: 'February 15, 2023',
     category: 'Budget Cooking',
