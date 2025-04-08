@@ -1,12 +1,13 @@
 
-import { useState } from 'react';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import RecipeResults from "@/components/RecipeResults";
-import BlogSection from "@/components/BlogSection";
-import PricingSection from "@/components/PricingSection";
+import PremiumSection from "@/components/PremiumSection";
+import FAQSection from "@/components/FAQSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
+import { useState } from 'react';
 import { Recipe } from "@/components/RecipeResults";
 
 const Index = () => {
@@ -19,8 +20,9 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <RecipeResults recipes={searchResults} isLoading={isSearching} />
-        <BlogSection />
-        <PricingSection />
+        <WhyChooseUs />
+        <PremiumSection />
+        <FAQSection />
         <NewsletterSection />
       </main>
       <Footer />

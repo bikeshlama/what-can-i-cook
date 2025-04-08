@@ -1,5 +1,6 @@
 
 import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,16 +15,16 @@ const Footer = () => {
               Your personal assistant for discovering delicious recipes using ingredients you already have.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Youtube">
                 <Youtube size={20} />
               </a>
             </div>
@@ -32,20 +33,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Explore</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Recipe Categories</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Popular Recipes</a></li>
-              <li><a href="#blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Meal Plans</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-bold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
+              <li><a href="#premium" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Press</a></li>
             </ul>
           </div>
           
@@ -58,17 +49,22 @@ const Footer = () => {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">GDPR</a></li>
             </ul>
           </div>
+          
+          <div>
+            <h3 className="text-lg font-bold mb-4">Get in Touch</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Support</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Partnerships</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-gray-800 mt-10 pt-6 text-center md:text-left">
           <p className="text-gray-400 text-sm">
             &copy; {currentYear} What Can I Cook? All rights reserved.
           </p>
-          <div className="mt-4 md:mt-0">
-            <p className="text-gray-500 text-xs">
-              Ad-space available - contact sales@whatcanicook.com
-            </p>
-          </div>
         </div>
       </div>
     </footer>

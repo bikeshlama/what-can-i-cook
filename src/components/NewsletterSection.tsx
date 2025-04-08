@@ -31,7 +31,7 @@ const NewsletterSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get Weekly Meal Tips and Recipes to Your Inbox
+            Get Weekly Meal Tips & Recipes to Your Inbox
           </h2>
           <p className="text-white/80 mb-8">
             Join our community of home cooks and receive delicious recipes, cooking tips, and food inspiration every week.

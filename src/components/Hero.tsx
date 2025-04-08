@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, Search } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const Hero = () => {
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -45,22 +44,15 @@ const Hero = () => {
     setIsSearching(true);
     
     try {
-      // Call the Supabase Edge Function (to be implemented later)
-      const { data, error } = await supabase.functions.invoke('find-recipes', {
-        body: { ingredients }
-      });
-      
-      if (error) throw error;
-      
-      // This will be handled later when we implement the recipe display section
-      console.log("Recipes found:", data);
-      
-      toast({
-        title: "Recipes found!",
-        description: `Found ${data?.length || 0} recipes with your ingredients.`,
-      });
-      
-      // Here you would update the state to display the recipes
+      // Simulate API call to demonstrate UI
+      // In real implementation, this would call Supabase
+      setTimeout(() => {
+        toast({
+          title: "Search complete!",
+          description: "Connect this to your Supabase backend to get real results.",
+        });
+        setIsSearching(false);
+      }, 1500);
       
     } catch (error) {
       console.error("Error finding recipes:", error);
@@ -69,7 +61,6 @@ const Hero = () => {
         description: "Could not find recipes. Please try again later.",
         variant: "destructive"
       });
-    } finally {
       setIsSearching(false);
     }
   };
