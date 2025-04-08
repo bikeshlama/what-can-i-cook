@@ -3,10 +3,14 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, Search } from 'lucide-react';
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Hero = () => {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [currentInput, setCurrentInput] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const { toast } = useToast();
 
   const addIngredient = () => {
     if (currentInput.trim() && !ingredients.includes(currentInput.trim())) {
@@ -28,6 +32,48 @@ const Hero = () => {
     }
   };
 
+  const findRecipes = async () => {
+    if (ingredients.length === 0) {
+      toast({
+        title: "No ingredients added",
+        description: "Please add at least one ingredient to find recipes.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSearching(true);
+    
+    try {
+      // Call the Supabase Edge Function (to be implemented later)
+      const { data, error } = await supabase.functions.invoke('find-recipes', {
+        body: { ingredients }
+      });
+      
+      if (error) throw error;
+      
+      // This will be handled later when we implement the recipe display section
+      console.log("Recipes found:", data);
+      
+      toast({
+        title: "Recipes found!",
+        description: `Found ${data?.length || 0} recipes with your ingredients.`,
+      });
+      
+      // Here you would update the state to display the recipes
+      
+    } catch (error) {
+      console.error("Error finding recipes:", error);
+      toast({
+        title: "Something went wrong",
+        description: "Could not find recipes. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
   return (
     <section className="relative py-20 md:py-28 bg-recipe-beige overflow-hidden">
       <div className="container-custom relative z-10">
@@ -42,7 +88,7 @@ const Hero = () => {
           </p>
           
           <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-4 min-h-12">
               {ingredients.map((ingredient, index) => (
                 <div 
                   key={index} 
@@ -52,6 +98,7 @@ const Hero = () => {
                   <button 
                     onClick={() => removeIngredient(index)}
                     className="ml-2 text-recipe-orange hover:text-recipe-orange-light"
+                    aria-label={`Remove ${ingredient}`}
                   >
                     &times;
                   </button>
@@ -68,19 +115,29 @@ const Hero = () => {
                   onKeyDown={handleKeyDown}
                   placeholder="Enter an ingredient (e.g., eggs, chicken, broccoli)"
                   className="py-6 text-base"
+                  aria-label="Ingredient input"
                 />
               </div>
-              <Button onClick={addIngredient} className="bg-recipe-green hover:bg-recipe-green-light text-white p-2 h-auto">
+              <Button 
+                onClick={addIngredient} 
+                className="bg-recipe-green hover:bg-recipe-green-light text-white p-2 h-auto"
+                aria-label="Add ingredient"
+              >
                 <Plus size={20} />
               </Button>
             </div>
             
             <Button 
               className="btn-primary w-full mt-4 text-lg flex items-center justify-center gap-2"
-              disabled={ingredients.length === 0}
+              disabled={ingredients.length === 0 || isSearching}
+              onClick={findRecipes}
             >
-              <Search size={20} />
-              Find Recipes
+              {isSearching ? 'Searching...' : (
+                <>
+                  <Search size={20} />
+                  Find Recipes
+                </>
+              )}
             </Button>
           </div>
         </div>
