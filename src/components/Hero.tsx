@@ -31,7 +31,9 @@ const Hero = () => {
     }
   };
 
-  const findRecipes = async () => {
+  const findRecipes = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
     if (ingredients.length === 0) {
       toast({
         title: "No ingredients added",
@@ -78,7 +80,7 @@ const Hero = () => {
             Find delicious recipes using ingredients you already have in your kitchen
           </p>
           
-          <div className="bg-white p-6 rounded-xl shadow-md">
+          <form id="ingredient-form" onSubmit={findRecipes} className="bg-white p-6 rounded-xl shadow-md">
             <div className="flex flex-wrap gap-2 mb-4 min-h-12">
               {ingredients.map((ingredient, index) => (
                 <div 
@@ -87,6 +89,7 @@ const Hero = () => {
                 >
                   <span>{ingredient}</span>
                   <button 
+                    type="button"
                     onClick={() => removeIngredient(index)}
                     className="ml-2 text-recipe-orange hover:text-recipe-orange-light"
                     aria-label={`Remove ${ingredient}`}
@@ -101,6 +104,7 @@ const Hero = () => {
               <div className="relative flex-1">
                 <Input
                   type="text"
+                  id="ingredient-input"
                   value={currentInput}
                   onChange={(e) => setCurrentInput(e.target.value)}
                   onKeyDown={handleKeyDown}
@@ -110,6 +114,7 @@ const Hero = () => {
                 />
               </div>
               <Button 
+                type="button"
                 onClick={addIngredient} 
                 className="bg-recipe-green hover:bg-recipe-green-light text-white p-2 h-auto"
                 aria-label="Add ingredient"
@@ -119,9 +124,9 @@ const Hero = () => {
             </div>
             
             <Button 
+              type="submit"
               className="btn-primary w-full mt-4 text-lg flex items-center justify-center gap-2"
               disabled={ingredients.length === 0 || isSearching}
-              onClick={findRecipes}
             >
               {isSearching ? 'Searching...' : (
                 <>
@@ -130,7 +135,7 @@ const Hero = () => {
                 </>
               )}
             </Button>
-          </div>
+          </form>
         </div>
       </div>
       

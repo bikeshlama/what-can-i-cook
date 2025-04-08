@@ -22,7 +22,7 @@ const RecipeResults = ({ recipes, isLoading }: RecipeResultsProps) => {
   
   if (isLoading) {
     return (
-      <section className="py-16 bg-recipe-gray-light">
+      <section id="recipe-results" className="py-16 bg-recipe-gray-light">
         <div className="container-custom">
           <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
             Finding Recipes <span className="text-recipe-orange">For You</span>
@@ -47,11 +47,22 @@ const RecipeResults = ({ recipes, isLoading }: RecipeResultsProps) => {
   }
 
   if (!recipes || recipes.length === 0) {
-    return null;
+    return (
+      <section id="recipe-results" className="py-16 bg-recipe-gray-light">
+        <div className="container-custom">
+          <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
+            Ready to Discover <span className="text-recipe-orange">New Recipes?</span>
+          </h2>
+          <p className="text-center text-gray-600 max-w-2xl mx-auto">
+            Enter your ingredients above and click "Find Recipes" to see what you can cook with what you have.
+          </p>
+        </div>
+      </section>
+    );
   }
 
   return (
-    <section className="py-16 bg-recipe-gray-light">
+    <section id="recipe-results" className="py-16 bg-recipe-gray-light">
       <div className="container-custom">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
           Recipes You Can Make <span className="text-recipe-orange">Right Now</span>

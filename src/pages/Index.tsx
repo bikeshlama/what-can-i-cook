@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import RecipeResults from "@/components/RecipeResults";
-import PremiumSection from "@/components/PremiumSection";
+import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import NewsletterSection from "@/components/NewsletterSection";
@@ -21,7 +21,7 @@ const Index = () => {
         <Hero />
         <RecipeResults recipes={searchResults} isLoading={isSearching} />
         <WhyChooseUs />
-        <PremiumSection />
+        <PricingSection />
         <FAQSection />
         <NewsletterSection />
       </main>
