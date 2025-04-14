@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -35,6 +36,19 @@ const App = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Protected route component
+  const ProtectedRoute = ({ children }) => {
+    if (loading) {
+      return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+    }
+    
+    if (!session) {
+      return <Navigate to="/auth/login" replace />;
+    }
+    
+    return children;
+  };
+
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
   }
@@ -49,6 +63,14 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/auth/:mode" element={<Auth />} />
+            <Route 
+              path="/dashboard/*" 
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } 
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
